@@ -3,7 +3,6 @@ $json_data = include('database.php');
 // echo $json_data;exit;
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,17 +11,15 @@ $json_data = include('database.php');
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-
    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-</head>
-
-<body>
    <script src="https://code.highcharts.com/highcharts.js"></script>
    <script src="https://code.highcharts.com/modules/series-label.js"></script>
    <script src="https://code.highcharts.com/modules/exporting.js"></script>
    <script src="https://code.highcharts.com/modules/export-data.js"></script>
    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
 
+<body>
    <figure class="highcharts-figure">
       <div id="container"></div>
    </figure>
@@ -42,16 +39,16 @@ $json_data = include('database.php');
          },
 
          yAxis: {
-            //change the background of Y
+            //Change the background of Y
             // alternateGridColor: '#522536',
             title: {
                text: 'Number of Employees'
             }
          },
-         //changing the colors
+         //Changing the colors
          colors: ['#1C110A', '#4FFF33', '#4233FF', '#FF33D7', '#FFEC33'],
          xAxis: {
-            //change the background of X
+            //Change the background of X
             // alternateGridColor: '#522536',
             accessibility: {
                rangeDescription: 'Range: 2010 to 2020'
