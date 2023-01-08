@@ -31,7 +31,7 @@ $json_data = include('database.php');
       Highcharts.chart('container', {
 
          title: {
-            //Cabeçalho
+            //Header
             text: 'Basic Line - 2D',
             align: 'left'
          },
@@ -42,7 +42,7 @@ $json_data = include('database.php');
          },
 
          yAxis: {
-            //alterar o fundo 
+            //change the background of Y
             // alternateGridColor: '#522536',
             title: {
                text: 'Number of Employees'
@@ -51,7 +51,7 @@ $json_data = include('database.php');
          //changing the colors
          colors: ['#1C110A', '#4FFF33', '#4233FF', '#FF33D7', '#FFEC33'],
          xAxis: {
-            //alterar o fundo 
+            //change the background of X
             // alternateGridColor: '#522536',
             accessibility: {
                rangeDescription: 'Range: 2010 to 2020'
@@ -69,8 +69,8 @@ $json_data = include('database.php');
                label: {
                   connectorAllowed: false
                },
-               //Ponto Inicial do gráfico, 
-               // o pointStop é de acordo com quantos dados tem no campo 'data' do banco
+               //Starting point of the chart, 
+               //The pointStop is acording to how many data there are in the 'data' column in the database
                pointStart: 2010,
             }
          },
