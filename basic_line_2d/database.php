@@ -11,19 +11,28 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM basic_line_2d";
+$sql = "SELECT * FROM relatorioGerencial";
 $result = $conn->query($sql);
+
 
 if ($result->num_rows > 0) {
   // output data of each row
+  // var_dump($result->fetch_assoc());
+
   while($row = $result->fetch_assoc()) {
+    // var_dump($row['M'] + $row['L']);
     $arr = array (
-                'name' => $row['name'],
-                'data' => array_map('intval', explode(',', $row['data']))
+                'name' => $row['descricao_lotacao'],
+                'data' => $row['M']
+                // 'data' => array_map('intval', explode(',', $row['M']))
+
             );
 
             $series_array[] = $arr;
   }
+
+  var_dump($series_array[0]);
+
   return json_encode($series_array);
 } else {
   echo "0 results";

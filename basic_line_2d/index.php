@@ -11,7 +11,7 @@ $json_data = include('database.php');
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
-   <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+   <link rel="stylesheet" type="text/css" media="screen" />
    <script src="https://code.highcharts.com/highcharts.js"></script>
    <script src="https://code.highcharts.com/modules/series-label.js"></script>
    <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -26,68 +26,53 @@ $json_data = include('database.php');
 
    <script>
       Highcharts.chart('container', {
-
+         chart: {
+            type: 'column'
+         },
          title: {
-            //Header
-            text: 'Basic Line - 2D',
-            align: 'left'
+            text: 'Relatório Gerencial - Mês/Ano'
          },
-
          subtitle: {
-            text: 'Gráfico',
-            align: 'left'
+            text: ''
          },
-
-         yAxis: {
-            //Change the background of Y
-            // alternateGridColor: '#522536',
-            title: {
-               text: 'Number of Employees'
-            }
-         },
-         //Changing the colors
-         colors: ['#1C110A', '#4FFF33', '#4233FF', '#FF33D7', '#FFEC33'],
          xAxis: {
-            //Change the background of X
-            // alternateGridColor: '#522536',
-            accessibility: {
-               rangeDescription: 'Range: 2010 to 2020'
+            categories: [
+               'Jan',
+               'Feb',
+               'Mar',
+               'Apr',
+               'May',
+               'Jun',
+               'Jul',
+               'Aug',
+               'Sep',
+               'Oct',
+               'Nov',
+               'Dec'
+            ],
+            crosshair: true
+         },
+         yAxis: {
+            min: 0,
+            title: {
+               text: 'Rainfall (mm)'
             }
          },
-
-         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
+         tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+               '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
          },
-
          plotOptions: {
-            series: {
-               label: {
-                  connectorAllowed: false
-               },
-               //Starting point of the chart, 
-               //The pointStop is acording to how many data there are in the 'data' column in the database
-               pointStart: 2010,
+            column: {
+               pointPadding: 0.2,
+               borderWidth: 0
             }
          },
-
          series: <?= $json_data ?>,
-
-         responsive: {
-            rules: [{
-               condition: {
-                  maxWidth: 500
-               },
-               chartOptions: {
-                  legend: {
-                     layout: 'horizontal',
-                     align: 'center',
-                     verticalAlign: 'bottom'
-                  }
-               }
-            }]
-         }
 
       });
    </script>
