@@ -10,60 +10,79 @@
 <body>
 
 <?php 
-  $con = new mysqli('localhost','root','','db_chart');
-  $query = $con->query("
-    SELECT custo_individual as custo FROM bar_chart
-  ");
+  // $con = new mysqli('localhost','root','','db_chart');
+  // $query = $con->query("
+  //   SELECT custo_individual as custo FROM bar_chart
+  // ");
 
-// $query = $con->query("
-//     SELECT 
-//       mes,
-//         SUM(custo_individual) as custo
-//     FROM bar_chart
-//     GROUP BY mes
-//   ");
+  // foreach($query as $data)
+  // {
+  //   $custo[] = $data['custo'];
+  // }
 
-  foreach($query as $data)
-  {
-   //  $mes[] = $data['mes'];
-    $custo[] = $data['custo'];
-  }
+  //   // var_dump($custo);
+  //   // var_dump(json_encode($custo));
+?>
 
-   // var_dump(json_encode($mes));
-   var_dump(json_encode($custo));
-   // die;
+<?php
+$json = file_get_contents('dados.json');
+$datas = json_decode($json, true);
+
+foreach($datas as $data) {
+  $dados[] = $data;
+}
+
+$custo=[];
+$custo[] = [
+            $dados[0]['janeiro'],
+            $dados[0]['fevereiro'], 
+            $dados[0]['marco'], 
+            $dados[0]['abril'], 
+            $dados[0]['maio'], 
+            $dados[0]['junho'], 
+            $dados[0]['julho'], 
+            $dados[0]['agosto'], 
+            $dados[0]['setembro'], 
+            $dados[0]['outubro'], 
+            $dados[0]['novembro'], 
+            $dados[0]['dezembro']
+          ];
+
+// var_dump($cust[0]);
 
 ?>
 
-
-<div style="width: 500px;">
+<div style="display: inline-block; width: 500px; margin-right: 85px;">
   <canvas id="myChart"></canvas>
 </div>
- 
+
+<div style="display: inline-block; width: 500px;">
+  <canvas id="Chart"></canvas>
+</div>
+
 <script>
    const labels = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
    const data = {
     labels: labels,
     datasets: [{
-      label: 'Custo Individual',
-      data: <?php echo json_encode($custo) ?>,
+      label: 'SECRETARIA MUNICIPAL DE EDUCAÇÃO',
+      data: <?php echo json_encode($custo[0]) ?>,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
       ],
       borderColor: [
         'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'CRECHE LAR MARCIA',
+      data: <?php echo json_encode($custo[0]) ?>,
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.2)',
+      ],
+      borderColor: [
         'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
       ],
       borderWidth: 1
     }]
@@ -85,6 +104,12 @@
     document.getElementById('myChart'),
     config
   );
+
+  var myChart = new Chart(
+    document.getElementById('Chart'),
+    config
+  );
+  
 </script>
 
 </body>
