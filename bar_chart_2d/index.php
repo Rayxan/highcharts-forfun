@@ -56,7 +56,7 @@
 
   <div style="display: inline-block; margin-top: 25px;">
     <div style="width: 500px; margin-right: 85px;">
-      <label for=""><b>f:t-> I</b></label>
+      <label for=""><b>f:t-> M</b></label>
       <canvas id="myChart"></canvas>
     </div>
   </div>
